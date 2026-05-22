@@ -63,6 +63,40 @@ You provide:
 - Optionally: a brand-guidelines PDF / web page to inform the unofficial / official phrasing of the NOTICE file.
 - The target folder for the output (or let Claude pick a sensible default).
 
+## Example prompts
+
+Copy any of these into Claude Code (or Codex / another agentic LLM) after installing the skill. Adjust the paths and institution names to your situation.
+
+### 1. Minimum viable prompt
+
+> *"I have a PowerPoint template at `~/Downloads/uni-template.potx` and matching logo PNGs in `~/Downloads/uni-logos/`. Please convert this into a LaTeX Beamer template that mimics the original look. Save the result to `~/Documents/uni-beamer/`."*
+
+This is the simplest form. The skill will extract colours and fonts from the `.potx`, copy the logos into the output folder, generate the theme `.sty` plus a tutorial `.tex` deck, and compile it for you to inspect.
+
+### 2. With explicit brand guidelines
+
+> *"My institution's PowerPoint template is at `~/Downloads/lab-template.potx`, our brand guidelines PDF is at `~/Downloads/lab-brand-guidelines.pdf`, and the official logos (primary, white, black; wordmark, emblem, combined) are in `~/Downloads/lab-logos/`. Please build a Beamer theme that follows the guidelines and treat the result as unofficial — I want to share it publicly but want clear language that it is not an institutional product."*
+
+Use this when you have a brand-guidelines PDF and want the NOTICE file to reflect the rules (e.g. "the avancez emblem is reserved for ceremonial use" or "logos may not be cropped"). The skill reads the PDF to inform the wording.
+
+### 3. Academic conference talk (with science packages)
+
+> *"Here is the PowerPoint template for my university: `~/Downloads/univ.potx`. Logos in `~/Downloads/univ-logos/`. I will use this for academic conference talks, so please make sure the tutorial deck demonstrates `amsmath`, `siunitx`, `booktabs`, and `pgfplots` so I can copy patterns. Output to `~/Documents/univ-beamer/`."*
+
+The skill defaults to including science packages in academic conversions; calling them out explicitly ensures the tutorial deck includes worked equation, units, table, and plot examples.
+
+### 4. End-to-end with GitHub repo creation
+
+> *"Convert the PowerPoint template at `~/Downloads/acme.potx` (with logos in `~/Downloads/acme-logos/`) to a Beamer theme. Once it compiles cleanly, create a public GitHub repository at `myhandle/acme-beamer` and push the result there as a single clean initial commit. I want a `dev` branch alongside `main` for ongoing work."*
+
+The skill will (a) build the theme, (b) verify with `pdflatex`, (c) ask for your approval before touching GitHub, (d) create the empty repo via `gh repo create`, and (e) push as one initial commit with no Claude-development history exposed. This is the flow that produced [github.com/wenlzhang/chalmers-beamer](https://github.com/wenlzhang/chalmers-beamer).
+
+### Anti-prompts (what the skill is not for)
+
+- *"Make me a generic dark-purple Beamer theme."* — there is no institutional template to mimic; just write a normal Beamer theme by hand.
+- *"Update my existing Beamer theme to use the new institutional brand."* — the skill produces a fresh theme; merging changes into an existing one is a manual diff job.
+- *"Translate my PowerPoint deck into Beamer slide-by-slide."* — the skill builds the *theme* (visual identity, layouts, colours), not the content of any specific deck.
+
 ## What you get back
 
 A folder structured like:
