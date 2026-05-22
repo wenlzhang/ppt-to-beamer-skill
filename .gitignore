@@ -1,0 +1,33 @@
+# Working directories the skill creates while applying a conversion
+/tmp/
+/scratch/
+*.potx-extracted/
+
+# LaTeX auxiliary files (if a user clones examples and compiles them)
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.lof
+*.lot
+*.idx
+*.ind
+*.ilg
+*.vrb
+
+# Generated PDFs -- not tracked; compile locally
+*.pdf
+
+# OS / editor junk
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/

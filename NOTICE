@@ -1,0 +1,66 @@
+PPT to Beamer Skill -- third-party notices
+==========================================
+
+This skill repository contains no third-party assets.  It encodes a
+methodology (in `SKILL.md`) that Claude uses to read PowerPoint
+templates and generate Beamer themes; the methodology is original work
+licensed under MIT (see `LICENSE`).
+
+When the skill is *applied* to a PowerPoint template, the resulting
+Beamer-theme folder will typically include:
+
+  * The LaTeX code (`.sty`, `.tex`, `README.md`) -- MIT-licensable by
+    the user; the skill imposes no restrictions on derivative work.
+
+  * Brand assets (logo PNGs, wordmarks, emblems) copied from the input
+    PowerPoint template or supplied separately by the user.  These
+    remain the intellectual property and trademarks of the originating
+    institution; the skill does NOT relicense them.
+
+  * A generated `NOTICE` file in the output folder explaining the
+    licensing of the produced theme.
+
+The skill embeds the following template into every generated `NOTICE`
+file (parameterised with the institution's name).  Users of the
+generated theme are expected to abide by the institution's brand-use
+guidelines when publishing or sharing the resulting deck.
+
+----------------------------------------------------------------------
+TEMPLATE -- generated NOTICE file format (the skill writes this into
+the output folder; not part of this repository's own licensing):
+----------------------------------------------------------------------
+
+<INSTITUTION> Beamer Template -- Unofficial community theme
+============================================================
+
+This repository contains an unofficial LaTeX Beamer theme that
+approximates the visual identity of <INSTITUTION>, derived from the
+institution's publicly available logotypes and PowerPoint master as
+references.
+
+It is not an official <INSTITUTION> product and has not been reviewed
+or endorsed by the institution.  For brand-critical materials, consult
+the institution's brand portal and your local communications officer.
+
+Trademarks and logotypes
+------------------------
+
+The PNG files under `logographics/` are trademarks and copyrighted
+material of <INSTITUTION>.  They are NOT licensed under this
+repository's MIT licence.  Their use is governed by the <INSTITUTION>
+brand guidelines.  By using this template you agree to abide by those
+guidelines when displaying the marks.
+
+Approximations
+--------------
+
+  * Arial / Calibri are not freely shipped with TeX Live.  The theme
+    approximates them with Helvetica (`helvet`) or Calibri-clone
+    (`carlito`).
+  * Logo placement reads the PowerPoint placeholder geometry but
+    approximates it within LaTeX's text-flow model; expect
+    millimetre-level drift from the PowerPoint original.
+
+If any of the above conflicts with the brand guidelines of
+<INSTITUTION>, please open an issue at the repository where you
+obtained this theme; the asset can be removed.
