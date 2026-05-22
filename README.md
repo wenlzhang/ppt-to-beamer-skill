@@ -6,6 +6,12 @@ Drop your institution's PowerPoint template, brand-guidelines PDF, and logo PNGs
 
 The skill encodes the *methodology* of the conversion — colour palette extraction from theme XML, slide-layout reading from the OpenXML master, the Beamer-internals quirks to work around, the dual-licence wording. It does not assume any specific institution; the same skill produces a working Beamer theme for any university, lab, or company brand whose PowerPoint master and logos you can supply.
 
+## How this skill came to be
+
+This skill is **bottom-up**, not top-down. It was not a planned project — it was distilled *after the fact* from a concrete conversion exercise: building a Beamer template for Chalmers University of Technology's 2026 visual identity, available at <https://github.com/wenlzhang/chalmers-beamer>. The methodology, gotchas, and reference notes here are exactly the steps that worked for that conversion, generalised so anyone can apply them to any institution's PowerPoint template.
+
+That means the skill is opinionated rather than exhaustive — it reflects one author's experience with one (non-trivial) institutional template rather than a comprehensive survey of every possible PowerPoint master layout. Pull requests that broaden the coverage are very welcome (see *Contributing* below).
+
 ## What this skill is
 
 A Claude Skill is a Markdown file (`SKILL.md`) with YAML frontmatter that Claude Code matches against user prompts. When the user provides a PowerPoint template and asks for a Beamer equivalent, Claude reads `SKILL.md`, follows the encoded workflow, and consults the `reference/` files as needed.
@@ -14,11 +20,27 @@ The skill is **portable**: clone the repo into `~/.claude/skills/ppt-to-beamer/`
 
 ## Installation
 
+### Claude Code (primary target)
+
 ```bash
-git clone https://github.com/<your-handle>/ppt-to-beamer-skill ~/.claude/skills/ppt-to-beamer
+git clone https://github.com/wenlzhang/ppt-to-beamer-skill ~/.claude/skills/ppt-to-beamer
 ```
 
 Or, if you maintain a Claude Code plugin manifest, add this repo as a plugin dependency.
+
+### Codex CLI and other agentic LLMs
+
+`SKILL.md` is plain Markdown — there is nothing Claude-specific about the *contents* of the workflow. You can hand it to OpenAI Codex CLI, Cursor, Aider, or any other agentic-LLM runtime that accepts a structured prompt:
+
+```bash
+# Codex CLI example -- pass SKILL.md as a system / instructions file
+codex --instructions ~/path/to/ppt-to-beamer-skill/SKILL.md \
+      "Convert ~/Downloads/uni-template.potx into a Beamer theme."
+```
+
+The frontmatter (`name`, `description`) is matched by Claude Code automatically; in other runtimes you may need to surface the description as part of your own system prompt. The body of `SKILL.md` plus the files under `reference/` work uniformly across runtimes because they are vanilla Markdown.
+
+Quality of the produced theme depends mostly on the LLM's facility with LaTeX / Beamer and its ability to read PowerPoint OpenXML — both of which the major frontier models handle well as of 2026.
 
 ## Usage
 
