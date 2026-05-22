@@ -114,6 +114,10 @@ A folder structured like:
 
 The output is designed to be *publishable*: drop it into a public GitHub repo with confidence that no personal information, no internal-only assets, and no official-endorsement claims have leaked into the published files.
 
+## Related projects
+
+- **[beamer-skill](https://github.com/wenlzhang/beamer-skill)** — once your institutional Beamer theme is in place, the `beamer-skill` repo is a companion Claude Skill that helps you *author* the slides themselves: cover pages, multi-column layouts, blocks, figures, tables, equations, citations, Gantt charts, pgfplots, overlays, animations, and speaker notes. If you find yourself asking the LLM how to build a specific slide pattern, install that skill alongside this one.
+
 ## Limitations and honest caveats
 
 - **Font substitution is approximate.** Most institutional templates use Arial / Calibri / Helvetica Neue — none of which ship freely with TeX Live. The skill uses Helvetica (`helvet`) or Calibri-clone (`carlito`) as the closest substitute and documents the trade-off in the NOTICE file.
